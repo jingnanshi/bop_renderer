@@ -28,7 +28,7 @@ set -u # Treat unset variables as an error when substituting.
 #set -x # Print commands and their arguments as they are executed.
 
 # mesa version
-mesaversion="${OSMESA_VERSION:-17.1.6}"
+mesaversion="${OSMESA_VERSION:-18.3.6}"
 # mesa-demos version
 demoversion=8.3.0
 # glu version
@@ -51,7 +51,7 @@ osmesadriver=${OSMESA_DRIVER:-4}
 mangled=0
 # do we want to build the proper LLVM static libraries too? or are they already installed ?
 buildllvm="${LLVM_BUILD:-1}"
-llvmversion="${LLVM_VERSION:-4.0.1}"
+llvmversion="${LLVM_VERSION:-6.0.1}"
 # redirect output and error to log file; exit script on error.
 silentlogging="${SILENT_LOG:-0}"
 buildosdemo="${BUILD_OSDEMO:-0}"
@@ -386,7 +386,7 @@ fi
 if [ ! -f "mesa-${mesaversion}.tar.gz" ]; then
     echo "* downloading Mesa ${mesaversion}..."
     echo "ftp://ftp.freedesktop.org/pub/mesa/mesa-${mesaversion}.tar.gz"
-    curl $curlopts -O "ftp://ftp.freedesktop.org/pub/mesa/older-versions/17.x/mesa-${mesaversion}.tar.gz" || curl $curlopts -O "ftp://ftp.freedesktop.org/pub/mesa/older-versions/17.x/${mesaversion}/mesa-${mesaversion}.tar.gz"
+    curl $curlopts -O "ftp://ftp.freedesktop.org/pub/mesa/older-versions/${mesaversion/.*/.x}/mesa-${mesaversion}.tar.gz" || curl $curlopts -O "ftp://ftp.freedesktop.org/pub/mesa/older-versions/${mesaversion/.*/.x}/${mesaversion}/mesa-${mesaversion}.tar.gz"
 fi
 tar zxf "mesa-${mesaversion}.tar.gz"
 
