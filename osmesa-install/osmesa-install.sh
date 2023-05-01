@@ -386,9 +386,7 @@ fi
 if [ ! -f "mesa-${mesaversion}.tar.gz" ]; then
     echo "* downloading Mesa ${mesaversion}..."
     echo "ftp://ftp.freedesktop.org/pub/mesa/mesa-${mesaversion}.tar.gz"
-    curl $curlopts -O "ftp://ftp.freedesktop.org/pub/mesa/mesa-${mesaversion}.tar.gz" \
-    || curl $curlopts -O "ftp://ftp.freedesktop.org/pub/mesa/older-versions/${mesaversion/.*/.x}/mesa-${mesaversion}.tar.gz" \
-    || curl $curlopts -O "ftp://ftp.freedesktop.org/pub/mesa/older-versions/${mesaversion/.*/.x}/${mesaversion}/mesa-${mesaversion}.tar.gz"
+    curl $curlopts -O "ftp://ftp.freedesktop.org/pub/mesa/older-versions/${mesaversion/.*/.x}/mesa-${mesaversion}.tar.gz" || curl $curlopts -O "ftp://ftp.freedesktop.org/pub/mesa/older-versions/${mesaversion/.*/.x}/${mesaversion}/mesa-${mesaversion}.tar.gz"
 fi
 tar zxf "mesa-${mesaversion}.tar.gz"
 
