@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.12)
 project(bop_renderer)
 
 
@@ -18,11 +18,16 @@ project(bop_renderer)
 set(CPP_STANDARD -std=c++11)
 add_definitions(${CPP_STANDARD})
 
-# Python library (tested with Python 3.6).
-set(PYTHON_LIBRARIES $ENV{PYTHON_PREFIX}/lib/libpython3.6m.so)
+find_package(Python REQUIRED COMPONENTS Development)
+message("Python_LIBRARIES " ${Python_LIBRARIES})
+message("Python_LIBRARY_DIRS " ${Python_LIBRARY_DIRS})
+message("Python_INCLUDE_DIRS " ${Python_INCLUDE_DIRS})
 
-# Directory with Python includes (tested with Python 3.6).
-set(PYTHON_INCLUDE_DIRS $ENV{PYTHON_PREFIX}/include/python3.6m)
+# Python library (tested with Python 3.6, 3.9).
+set(PYTHON_LIBRARIES ${Python_LIBRARIES})
+
+# Directory with Python includes (tested with Python 3.6, 3.9).
+set(PYTHON_INCLUDE_DIRS ${Python_INCLUDE_DIRS})
 
 # OSMesa.
 set(OSMESA_LIBRARIES $ENV{OSMESA_PREFIX}/lib/libOSMesa32.so)
